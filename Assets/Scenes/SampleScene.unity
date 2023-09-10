@@ -154,6 +154,11 @@ Transform:
   m_Father: {fileID: 838582502}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &372448545 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5291575489485712023, guid: a088a1d45c29bb44982e15ee93c70178, type: 3}
+  m_PrefabInstance: {fileID: 5291575489622977605}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &411115593
 GameObject:
   m_ObjectHideFlags: 0
@@ -198,9 +203,16 @@ MonoBehaviour:
   - {fileID: 1143369582}
   enemyPrefabs:
   - {fileID: 2780735243786158187, guid: dbe1e72a53e657a49af1769d76e757c7, type: 3}
-  enemyPerSec: 0
+  enemyPerSec: 0.5
+  startEnemy: 8
+  difficultyScalingFactor: 0.25
+  BaseWaveTime: 30
+  WaveTime: 15
+  maxEnemyPerSec: 4.5
+  timeSinceLastSpawn: 0
   currentWave: 1
-  spawnInterval: 2
+  enemiesAlive: 0
+  isSpawning: 0
 --- !u!114 &411115595
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -240,6 +252,7 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420030}
+  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -346,6 +359,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &519420033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c282aa5f593fe94282c8acd87e6dfd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  followSpeed: 2
+  yOffset: 0
+  target: {fileID: 372448545}
 --- !u!1 &578685209
 GameObject:
   m_ObjectHideFlags: 0

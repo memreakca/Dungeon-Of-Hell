@@ -9,19 +9,62 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private GameObject[] enemyPrefabs;
 
     [Header("Attiributes")]
-    [SerializeField] private int enemyPerSec;
+    [SerializeField] private float enemyPerSec;
+    [SerializeField] public float startEnemy = 8;
+    [SerializeField] public float difficultyScalingFactor = 0.25f;
+    [SerializeField] public float BaseWaveTime = 30;
 
+    public float WaveTime;
+    public float maxEnemyPerSec = 4.5f;
+    public float timeSinceLastSpawn;
     public int currentWave = 1;
-    public float spawnInterval = 2.0f;
-    private float nextSpawnTime = 0.0f;
+    public int enemiesAlive;
+    public bool isSpawning;
+    private float eps;
+
+    private void Start()
+    {
+        StartWave();
+        WaveTime = BaseWaveTime;
+    }
     private void Update()
     {
-        if (Time.time >= nextSpawnTime)
+        if (!isSpawning) return;
+        timeSinceLastSpawn += Time.deltaTime;
+
+        if (WaveTime > 0)
+        {
+            WaveTime -= Time.deltaTime;
+        }
+        else  isSpawning = false;
+ 
+
+        if (timeSinceLastSpawn >= (1f / eps) && WaveTime > 0 )
         {
             SpawnEnemy();
-            nextSpawnTime = Time.time + spawnInterval;
+            timeSinceLastSpawn = 0f;
         }
-        
+
+        if (enemiesAlive == 0 && WaveTime <= 0 )
+        {
+            EndWave();
+        }
+    }
+
+    private void StartWave()
+    {
+        isSpawning = true;
+        eps = EnemiesPerSec1();
+        WaveTime = WaveTime1();
+    }
+
+    private void EndWave()
+    {
+        Debug.Log("WaveEnded");
+        currentWave++;
+        isSpawning = false;
+        timeSinceLastSpawn = 0f;
+        Invoke("StartWave", 5);
     }
     private void SpawnEnemy()
     {
@@ -32,7 +75,16 @@ public class EnemySpawner : MonoBehaviour
         Transform spawnPoint = spawnPoints[ix];
         GameObject prefabToSpawn = enemyPrefabs[ex];
         Instantiate(prefabToSpawn, spawnPoint.position , Quaternion.identity);
+        enemiesAlive ++;
 
     }
 
+    private int WaveTime1()
+    {
+        return Mathf.RoundToInt(BaseWaveTime * Mathf.Pow(currentWave, difficultyScalingFactor));
+    }
+    private float EnemiesPerSec1()
+    {
+        return Mathf.Clamp( enemyPerSec * Mathf.Pow(currentWave, difficultyScalingFactor) , 0f , maxEnemyPerSec);
+    }
 }
