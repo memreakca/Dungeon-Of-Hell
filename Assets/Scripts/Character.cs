@@ -4,12 +4,19 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
+    public static Character main;
+
     [Header("Refs")]
     [SerializeField] private Rigidbody2D rb;
+    [SerializeField] public Transform[] weaponslot;
 
     [Header("Attiributes")]
     [SerializeField] private float ms = 2;
 
+    private void Awake()
+    {
+        main = this;
+    }
     private void Update()
     {
         float horizontalInput = Input.GetAxis("Horizontal");

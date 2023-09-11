@@ -13,8 +13,8 @@ public class Enemy : MonoBehaviour
         if (hitPoint <= 0f)
         {
             Debug.Log("DIED");
-
-
+            Destroy(gameObject); 
+            EnemySpawner.Instance.enemiesAlive--;
         }
     }
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
+    public static EnemySpawner Instance;
     [Header("Refs")]
     [SerializeField] private Transform[] spawnPoints;
     [SerializeField] private GameObject[] enemyPrefabs;
@@ -21,7 +22,10 @@ public class EnemySpawner : MonoBehaviour
     public int enemiesAlive;
     public bool isSpawning;
     private float eps;
-
+    private void Awake()
+    {
+        Instance = this;
+    }
     private void Start()
     {
         StartWave();
@@ -36,8 +40,7 @@ public class EnemySpawner : MonoBehaviour
         {
             WaveTime -= Time.deltaTime;
         }
-        else  isSpawning = false;
- 
+        
 
         if (timeSinceLastSpawn >= (1f / eps) && WaveTime > 0 )
         {
