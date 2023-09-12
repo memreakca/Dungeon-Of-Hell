@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 2022124946269582447}
   m_Layer: 7
   m_Name: MainCh
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -198,8 +198,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 5291575489485712010}
-  weaponslot: []
-  ms: 3
+  weaponslot:
+  - {fileID: 79200782000565709}
+  - {fileID: 3285169032360088028}
+  - {fileID: 1573962008116900731}
+  - {fileID: 9031663041547169999}
+  - {fileID: 2740128798759961033}
+  ms: 5
+  HitPoints: 15
 --- !u!50 &5291575489485712010
 Rigidbody2D:
   serializedVersion: 4

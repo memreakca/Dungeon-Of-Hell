@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private LayerMask Mask;
     [SerializeField] private float range;
     [SerializeField] private Transform target;
+    [SerializeField] public float dmg = 3f;
     private void Update()
     {
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, range , Mask);
@@ -48,4 +49,15 @@ public class Enemy : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, range);
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            other.gameObject.GetComponent<Character>().takeDamage(dmg);
+
+
+        }
+    }
+
 }

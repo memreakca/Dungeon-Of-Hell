@@ -12,6 +12,7 @@ public class Character : MonoBehaviour
 
     [Header("Attiributes")]
     [SerializeField] private float ms = 2;
+    [SerializeField] private float HitPoints = 15f;
 
     private void Awake()
     {
@@ -33,4 +34,15 @@ public class Character : MonoBehaviour
         movement *= ms * Time.deltaTime;
         Vector2 newPosition = rb.position + movement;
     }
+
+    public void takeDamage(float dmg)
+    {
+        HitPoints -= dmg;
+
+        if (HitPoints <= 0f)
+        {
+            Debug.Log("You DIED");
+        }
+    }
+
 }

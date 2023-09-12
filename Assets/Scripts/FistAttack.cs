@@ -86,18 +86,22 @@ public class FistAttack : MonoBehaviour
         isHit = false;
         canAttack = true;
     }
-    private void OnCollisionEnter2D(Collision2D collision2D)
+
+
+
+    private void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.CompareTag("Enemy"))
+        {
+            other.gameObject.GetComponent<Enemy>().takeDamage(dmg);
+            isHit = true;
+            canAttack = false;
 
-        collision2D.gameObject.GetComponent<Enemy>().takeDamage(dmg);
-        isHit = true;
-        canAttack = false;
-        
-        BackToPos();
+            BackToPos();
 
+        }
     }
-
-    private void CheckIsBack()
+        private void CheckIsBack()
     {
         if (!isHit)
         {
