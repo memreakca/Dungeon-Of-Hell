@@ -71,6 +71,7 @@ public class EnemySpawner : MonoBehaviour
     }
     private void SpawnEnemy()
     {
+        enemiesAlive++;
         int ex = 0;
         int ix;
         ix = Random.Range(0, spawnPoints.Length);
@@ -78,7 +79,7 @@ public class EnemySpawner : MonoBehaviour
         Transform spawnPoint = spawnPoints[ix];
         GameObject prefabToSpawn = enemyPrefabs[ex];
         Instantiate(prefabToSpawn, spawnPoint.position , Quaternion.identity);
-        enemiesAlive ++;
+        
 
     }
 
