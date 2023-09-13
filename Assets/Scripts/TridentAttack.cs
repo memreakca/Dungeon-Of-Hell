@@ -22,7 +22,7 @@ public class TridentAttack : MonoBehaviour
     [SerializeField] public float moveSpeed = 5.0f;
     [SerializeField] private float RotateRange;
 
-    private float rotationSpeed = 180f;
+    private float rotationSpeed = 500f;
     private bool isAttacking;
     private bool isHit;
     private Transform target;
@@ -33,9 +33,10 @@ public class TridentAttack : MonoBehaviour
     }
     private void Update()
     {
-
+            
         tridentCollider = gameObject.GetComponent<Collider2D>();
 
+       
         if (isAttacking)
         {
             tridentCollider.enabled = true;
@@ -43,9 +44,9 @@ public class TridentAttack : MonoBehaviour
         else tridentCollider.enabled = false;
 
         Collider2D[] RotateColliders = Physics2D.OverlapCircleAll(AttackPoint.position, RotateRange, EnemyMask);
-        
 
-        if (RotateColliders.Length > 0 )
+
+        if (RotateColliders.Length > 0)
         {
 
             float closestDistance = Mathf.Infinity;
@@ -93,26 +94,29 @@ public class TridentAttack : MonoBehaviour
         {
             CheckIsBack();
         }
-        
+
     }
+
       
 
 
     private void RotateTowardsTarget()
     {
-        
+        float angle = Mathf.Atan2(target.position.y - RotationPoint.position.y, target.position.x - RotationPoint.position.x) * Mathf.Rad2Deg - 90f;
+        Quaternion targetRotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
+        RotationPoint.rotation = Quaternion.RotateTowards(RotationPoint.rotation, targetRotation, rotationSpeed * Time.deltaTime);
     }
 
     private void Attack()
     {
-        Vector2 direction = (target.position - HitPoint.position).normalized;
-        transform.Translate(direction * moveSpeed * Time.deltaTime);
+        Vector3 direction = (target.position - RotationPoint.position).normalized;
+        RotationPoint.position += (direction * moveSpeed * Time.deltaTime);
         isAttacking = true;
     }
 
     private void BackToPos()
     {
-        transform.DOLocalMove(normalPosition.localPosition, 1f).SetEase(Ease.OutCubic).OnComplete(ResetAttack);
+        RotationPoint.DOLocalMove(normalPosition.localPosition, 1f).SetEase(Ease.OutCubic).OnComplete(ResetAttack);
         isAttacking = false;
     }
 
@@ -132,7 +136,7 @@ public class TridentAttack : MonoBehaviour
             isHit = true;
             canAttack = false;
 
-            BackToPos();
+            Invoke("BackToPos",0.5f);
 
         }
     }
