@@ -136,7 +136,7 @@ public class TridentAttack : MonoBehaviour
             isHit = true;
             canAttack = false;
 
-            Invoke("BackToPos",0.5f);
+            Invoke("BackToPos",0.25f);
 
         }
     }
