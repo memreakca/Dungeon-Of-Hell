@@ -1,26 +1,28 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
-using DG.Tweening.Core;
 
-public class FistAttack : MonoBehaviour
+public class TridentAttack : MonoBehaviour
 {
-    public static FistAttack main;
+    public static TridentAttack main;
     [Header("Refs")]
     [SerializeField] public Transform AttackPoint;
     [SerializeField] private LayerMask EnemyMask;
     [SerializeField] private Transform InitialPosition;
     [SerializeField] public Transform normalPosition;
+    [SerializeField] public Transform RotationPoint;
+    [SerializeField] public Transform HitPoint;
 
-    private Collider2D fistCollider;
-    
+    private Collider2D tridentCollider;
+
     [Header("Attributes")]
     [SerializeField] private float attackRange;
     [SerializeField] private float dmg;
     [SerializeField] public float moveSpeed = 5.0f;
+    [SerializeField] private float RotateRange;
 
-    
+    private float rotationSpeed = 180f;
     private bool isAttacking;
     private bool isHit;
     private Transform target;
@@ -32,14 +34,37 @@ public class FistAttack : MonoBehaviour
     private void Update()
     {
 
-        fistCollider = gameObject.GetComponent<Collider2D>();
+        tridentCollider = gameObject.GetComponent<Collider2D>();
 
         if (isAttacking)
         {
-            fistCollider.enabled = true;
+            tridentCollider.enabled = true;
         }
-        else fistCollider.enabled = false;
+        else tridentCollider.enabled = false;
+
+        Collider2D[] RotateColliders = Physics2D.OverlapCircleAll(AttackPoint.position, RotateRange, EnemyMask);
         
+
+        if (RotateColliders.Length > 0 )
+        {
+
+            float closestDistance = Mathf.Infinity;
+
+            foreach (Collider2D col in RotateColliders)
+            {
+                float distance = Vector2.Distance(transform.position, col.transform.position);
+                if (distance < closestDistance)
+                {
+                    closestDistance = distance;
+                    target = col.transform;
+                }
+            }
+            if (isAttacking == false)
+            {
+                RotateTowardsTarget();
+            }
+        }
+
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(AttackPoint.position, attackRange, EnemyMask);
 
 
@@ -57,7 +82,7 @@ public class FistAttack : MonoBehaviour
                     target = col.transform;
                 }
             }
-            
+
             if (canAttack)
             {
                 Attack();
@@ -65,22 +90,22 @@ public class FistAttack : MonoBehaviour
             else return;
         }
         else if (isAttacking == true)
-            {
+        {
             CheckIsBack();
         }
+        
     }
+      
 
-    private void OnDrawGizmosSelected()
+
+    private void RotateTowardsTarget()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(AttackPoint.position, attackRange);
+        
     }
 
-    
     private void Attack()
     {
-      
-        Vector2 direction = (target.position - transform.position).normalized;
+        Vector2 direction = (target.position - HitPoint.position).normalized;
         transform.Translate(direction * moveSpeed * Time.deltaTime);
         isAttacking = true;
     }
@@ -111,11 +136,19 @@ public class FistAttack : MonoBehaviour
 
         }
     }
-        private void CheckIsBack()
+    private void CheckIsBack()
     {
         if (!isHit)
         {
             BackToPos();
         }
     }
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(AttackPoint.position, attackRange);
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(AttackPoint.position, RotateRange);
+    }
+
 }

@@ -6,6 +6,8 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
     [SerializeField] GameObject fist;
+    [SerializeField] GameObject trident;
+
 
     private GameObject currentWeapon;
     int i = 0;
@@ -15,7 +17,7 @@ public class LevelManager : MonoBehaviour
         
         if (Character.main.weaponslot[i].childCount < 1)
         {
-            currentWeapon = Instantiate(fist, Character.main.weaponslot[i].position, Quaternion.identity);
+            currentWeapon = Instantiate(trident, Character.main.weaponslot[i].position, Quaternion.identity);
             currentWeapon.transform.parent = Character.main.weaponslot[i];
         }
         else i++;
