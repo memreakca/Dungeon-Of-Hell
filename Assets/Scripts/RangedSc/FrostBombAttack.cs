@@ -1,22 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
-public class FireballAttack : MonoBehaviour
+public class FrostBombAttack : MonoBehaviour
 {
+
     [Header("Refs")]
     [SerializeField] public Transform AttackPoint;
     [SerializeField] private LayerMask EnemyMask;
-    [SerializeField] private GameObject Fireball;
+    [SerializeField] private GameObject FrostBombPrefab;
     [SerializeField] private Transform RotationPoint;
 
     [Header("Attributes")]
     [SerializeField] private float attackRange;
     [SerializeField] private float LookRange;
+    [SerializeField] private float attackCd = 2f;
 
     private float rotationSpeed = 500f;
     private Transform target;
+    private bool canAttack = true;
 
     private void Update()
     {
@@ -57,9 +59,10 @@ public class FireballAttack : MonoBehaviour
                     target = col.transform;
                 }
             }
-            Attack();
+            if (canAttack)
+                Attack();
         }
-}
+    }
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
@@ -75,6 +78,15 @@ public class FireballAttack : MonoBehaviour
     }
     private void Attack()
     {
-        Instantiate(Fireball, AttackPoint.position, Quaternion.identity);
+        GameObject FrostBomblObj = Instantiate(FrostBombPrefab, AttackPoint.position, Quaternion.identity);
+        FrostBomb FrostBombScript = FrostBomblObj.GetComponentInChildren<FrostBomb>();
+        FrostBombScript.SetTarget(target);
+
+        canAttack = false;
+        Invoke("ResetAttack", attackCd);
+    }
+    private void ResetAttack()
+    {
+        canAttack = true;
     }
 }

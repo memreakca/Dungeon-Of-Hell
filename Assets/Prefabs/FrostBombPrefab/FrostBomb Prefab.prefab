@@ -42,9 +42,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4502931084696435098}
   - component: {fileID: 4514361410567914898}
-  - component: {fileID: 1441225697583259494}
+  - component: {fileID: 3981194258271349740}
   m_Layer: 0
-  m_Name: FireballHand
+  m_Name: FrostBombLauncher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -107,7 +107,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
-  m_Color: {r: 0.8867924, g: 0.55242497, b: 0.4141153, a: 1}
+  m_Color: {r: 0.18783373, g: 0.5943396, b: 0.57243156, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -117,7 +117,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1441225697583259494
+--- !u!114 &3981194258271349740
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -126,18 +126,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 3114890185650735158}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 280c37a4104d4f54eb9c7048df0bb242, type: 3}
+  m_Script: {fileID: 11500000, guid: d1ae0cf8290d55d4c82d5c7ffe116dfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   AttackPoint: {fileID: 7063768722212183400}
   EnemyMask:
     serializedVersion: 2
     m_Bits: 64
-  FireballPrefab: {fileID: 3065933282869110781, guid: a87e74e567b0ea5458faf3ab872c93a3, type: 3}
+  FrostBombPrefab: {fileID: 4316721247045210881, guid: 3d600a8894d3b0540b2dde7367724fa4, type: 3}
   RotationPoint: {fileID: 7506503305262823858}
-  attackRange: 4
-  LookRange: 5
-  attackCd: 1
+  attackRange: 5
+  LookRange: 7
+  attackCd: 2
 --- !u!1 &7190395654811737465
 GameObject:
   m_ObjectHideFlags: 0
@@ -179,7 +179,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2808412639111936969}
   m_Layer: 0
-  m_Name: Fireball Prefab
+  m_Name: FrostBomb Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
