@@ -9,37 +9,19 @@ public class Character : MonoBehaviour
     [Header("Refs")]
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] public Transform[] weaponslot;
-    //[SerializeField] public LayerMask points;
-    //[SerializeField] public Transform[] spwns;
+
 
     [Header("Attiributes")]
     [SerializeField] private float ms = 2;
     [SerializeField] private float HitPoints = 15f;
-    //[SerializeField] private float spawnrange;
-    //[SerializeField] private float antispawnrange;
+    [SerializeField] public float antispawnrange;
 
     private void Awake()
     {
         main = this;
     }
     private void Update()
-    {
-
-        //Collider2D[] spawn = Physics2D.OverlapCircleAll(transform.position, spawnrange, points );
-        //Collider2D[] antispawn = Physics2D.OverlapCircleAll(transform.position, antispawnrange, points );
-
-        //foreach(Collider2D pnt in spawn )
-        //{
-        //    Debug.Log(pnt.gameObject.name);
-        //    //pnt.enabled = false;
-        //    //foreach (Collider2D pnt2 in antispawn)
-        //    //{
-        //    //    pnt2.enabled = false;
-        //    //}
-           
-        //}
-        
-
+    {   
 
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
@@ -65,11 +47,9 @@ public class Character : MonoBehaviour
             Debug.Log("You DIED");
         }
     }
-    //private void OnDrawGizmosSelected()
-    //{
-    //    Gizmos.color = Color.red;
-    //    Gizmos.DrawWireSphere(transform.position, antispawnrange);
-    //    Gizmos.color = Color.green;
-    //    Gizmos.DrawWireSphere(transform.position, spawnrange);
-    //}
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, antispawnrange);
+    }
 }

@@ -18,6 +18,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] public float difficultyScalingFactor = 0.25f;
     [SerializeField] public float BaseWaveTime = 30;
 
+    public float antispawnrange;
     public float markDuration = 0.8f;
     public float WaveTime;
     public float maxEnemyPerSec = 4.5f;
@@ -32,7 +33,8 @@ public class EnemySpawner : MonoBehaviour
         Instance = this;
     }
     private void Start()
-    {
+    {   
+        antispawnrange = Character.main.antispawnrange;
         StartWave();
         WaveTime = BaseWaveTime;
     }
@@ -82,8 +84,17 @@ public class EnemySpawner : MonoBehaviour
         int ix;
         ix = Random.Range(0, spawnPoints.Length);
 
-        Transform spawnPoint = spawnPoints[ix];
         GameObject prefabToSpawn = enemyPrefabs[ex];
+        Transform spawnPoint = spawnPoints[ix];
+
+        Vector3 playerPosition = Character.main.transform.position;
+        while (Vector3.Distance(spawnPoint.position,playerPosition) < antispawnrange) 
+               
+        {
+            ix = Random.Range(0, spawnPoints.Length);
+            spawnPoint = spawnPoints[ix];
+        }
+        
 
         StartCoroutine(Sequence());
         IEnumerator Sequence()
