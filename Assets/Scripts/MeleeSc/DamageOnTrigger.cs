@@ -7,7 +7,7 @@ public class DamageOnTrigger : MonoBehaviour
 
     [SerializeField] public float dmg;
 
-
+  
     private void OnTriggerEnter2D(Collider2D other)
     {
         

@@ -1,13 +1,16 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
     public static EnemySpawner Instance;
     [Header("Refs")]
-    [SerializeField] private Transform[] spawnPoints;
+    [SerializeField] public Transform[] spawnPoints;
     [SerializeField] private GameObject[] enemyPrefabs;
+    [SerializeField] private GameObject prt;
 
     [Header("Attiributes")]
     [SerializeField] private float enemyPerSec;
@@ -15,6 +18,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] public float difficultyScalingFactor = 0.25f;
     [SerializeField] public float BaseWaveTime = 30;
 
+    public float markDuration = 0.8f;
     public float WaveTime;
     public float maxEnemyPerSec = 4.5f;
     public float timeSinceLastSpawn;
@@ -22,6 +26,7 @@ public class EnemySpawner : MonoBehaviour
     public int enemiesAlive;
     public bool isSpawning;
     private float eps;
+
     private void Awake()
     {
         Instance = this;
@@ -44,6 +49,7 @@ public class EnemySpawner : MonoBehaviour
 
         if (timeSinceLastSpawn >= (1f / eps) && WaveTime > 0 )
         {
+            
             SpawnEnemy();
             timeSinceLastSpawn = 0f;
         }
@@ -78,10 +84,26 @@ public class EnemySpawner : MonoBehaviour
 
         Transform spawnPoint = spawnPoints[ix];
         GameObject prefabToSpawn = enemyPrefabs[ex];
-        Instantiate(prefabToSpawn, spawnPoint.position , Quaternion.identity);
-        
 
+        StartCoroutine(Sequence());
+        IEnumerator Sequence()
+        {
+            spawn();
+            yield return new WaitForSeconds(markDuration); 
+            spawn2();
+        }
+
+        void spawn()
+        {
+            GameObject mark = Instantiate(prt, spawnPoint.position, Quaternion.identity);
+            Destroy(mark, markDuration);
+        }
+        void spawn2()
+        {
+            Instantiate(prefabToSpawn, spawnPoint.position, Quaternion.identity);
+        }
     }
+
 
     private int WaveTime1()
     {
