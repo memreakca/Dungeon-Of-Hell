@@ -347,7 +347,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Sword
+  m_text: 'FireMace
 
 '
   m_isRightToLeft: 0
@@ -812,7 +812,7 @@ MonoBehaviour:
   - {fileID: 1143369582}
   enemyPrefabs:
   - {fileID: 2780735243786158187, guid: dbe1e72a53e657a49af1769d76e757c7, type: 3}
-  enemyPerSec: 0.1
+  enemyPerSec: 1
   startEnemy: 2
   difficultyScalingFactor: 0.25
   BaseWaveTime: 30
@@ -838,7 +838,7 @@ MonoBehaviour:
   trident: {fileID: 3958350762106786213, guid: bc104faf6b170334ca2dde26d1040179, type: 3}
   fireball: {fileID: 7720755529770813461, guid: 6900f63ff3c460d4a8e3175c59545809, type: 3}
   frostbomb: {fileID: 7720755529770813461, guid: e05c077231f8b6e478d444542fad8bc6, type: 3}
-  sword: {fileID: 1293411146483455295, guid: bc09df5e644601a4cb0afb1fcac0b3b8, type: 3}
+  firemace: {fileID: 1293411146483455295, guid: bc09df5e644601a4cb0afb1fcac0b3b8, type: 3}
 --- !u!4 &411115596
 Transform:
   m_ObjectHideFlags: 0
@@ -1320,7 +1320,7 @@ GameObject:
   - component: {fileID: 849534103}
   - component: {fileID: 849534102}
   m_Layer: 5
-  m_Name: Sword
+  m_Name: FireMace
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1393,7 +1393,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 411115595}
         m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
-        m_MethodName: BuildSword
+        m_MethodName: BuildFireMace
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -9,7 +9,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] GameObject trident;
     [SerializeField] GameObject fireball;
     [SerializeField] GameObject frostbomb;
-    [SerializeField] GameObject sword;
+    [SerializeField] GameObject firemace;
 
 
     private GameObject currentWeapon;
@@ -57,12 +57,12 @@ public class LevelManager : MonoBehaviour
         }
         else i++;
     }
-    public void BuildSword()
+    public void BuildFireMace()
     {
 
         if (Character.main.weaponslot[i].childCount < 1)
         {
-            currentWeapon = Instantiate(sword, Character.main.weaponslot[i].position, Quaternion.identity);
+            currentWeapon = Instantiate(firemace, Character.main.weaponslot[i].position, Quaternion.identity);
             currentWeapon.transform.parent = Character.main.weaponslot[i];
         }
         else i++;
