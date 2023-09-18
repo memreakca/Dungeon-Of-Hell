@@ -10,4 +10,14 @@ public class InventoryController : MonoBehaviour
     {
         InventoryUI.InitializeInventoryUI(inventorysize);
     }
+
+    public void InvButton()
+    {
+        if (InventoryUI.isActiveAndEnabled == false)
+        {
+            InventoryUI.Show();
+        }
+        else InventoryUI.Hide();
+    }
+
 }
