@@ -204,13 +204,10 @@ MonoBehaviour:
   - {fileID: 1573962008116900731}
   - {fileID: 9031663041547169999}
   - {fileID: 2740128798759961033}
-  points:
-    serializedVersion: 2
-    m_Bits: 256
   ms: 5
   HitPoints: 15
-  spawnrange: 10
   antispawnrange: 3
+  inventorySize: 10
 --- !u!50 &5291575489485712010
 Rigidbody2D:
   serializedVersion: 4

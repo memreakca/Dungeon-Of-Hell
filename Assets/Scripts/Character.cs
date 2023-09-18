@@ -10,7 +10,6 @@ public class Character : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] public Transform[] weaponslot;
 
-
     [Header("Attiributes")]
     [SerializeField] private float ms = 2;
     [SerializeField] private float HitPoints = 15f;
