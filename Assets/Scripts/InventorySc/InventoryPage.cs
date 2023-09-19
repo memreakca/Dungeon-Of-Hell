@@ -3,16 +3,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.Rendering.VirtualTexturing.Debugging;
+using UnityEngine.UI;
 
 public class InventoryPage : MonoBehaviour
 {
     [SerializeField] private InventoryItem itemPrefab;
     [SerializeField] private RectTransform contentPanel;
+    [SerializeField] private InventoryDesc itemDescription;
 
     List<InventoryItem> items = new List<InventoryItem>();
 
-   
+    public Sprite image;
+    public int quantity;
+    public string title ,description;
 
+    private void Awake()
+    {
+        itemDescription.ResetDescription();      
+    }
     public void InitializeInventoryUI(int inventorysize)
     {
         for(int i = 0; i < inventorysize; i++)
@@ -50,12 +58,15 @@ public class InventoryPage : MonoBehaviour
 
     private void HandleItemSelection(InventoryItem obj)
     {
-        Debug.Log(obj.name);
+        itemDescription.SetDescription(image, title, description);
     }
 
     public void Show()
     {
         gameObject.SetActive(true);
+        itemDescription.ResetDescription();
+
+        items[2].SetData(image, quantity);
     }
     public void Hide()
     {

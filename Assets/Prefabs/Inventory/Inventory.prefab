@@ -447,6 +447,7 @@ GameObject:
   - component: {fileID: 6919833671013077175}
   - component: {fileID: 6919833671013077172}
   - component: {fileID: 6919833671013077161}
+  - component: {fileID: 1717770356153879445}
   m_Layer: 5
   m_Name: InventoryDesc
   m_TagString: Untagged
@@ -560,6 +561,21 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &1717770356153879445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6919833671013077170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8160d3a32a23c264ba3884f8ce82cf95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemImage: {fileID: 6919833670800598385}
+  titletext: {fileID: 6919833670711460974}
+  descriptiontext: {fileID: 6919833672432608081}
 --- !u!1 &6919833671059604307
 GameObject:
   m_ObjectHideFlags: 0
@@ -715,7 +731,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6919833671139728821
 RectTransform:
   m_ObjectHideFlags: 0
@@ -816,6 +832,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemPrefab: {fileID: 397032448311778489, guid: a505b06d0d4415b42820fd88941cca39, type: 3}
   contentPanel: {fileID: 6919833672053191146}
+  itemDescription: {fileID: 1717770356153879445}
+  image: {fileID: 0}
+  quantity: 0
+  title: 
+  description: 
 --- !u!114 &4908461354602531439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1570,8 +1591,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6919833671010428156}
   m_HandleRect: {fileID: 6919833671010428157}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0
+  m_Value: 0
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
