@@ -10,6 +10,7 @@ public class InventoryPage : MonoBehaviour
     [SerializeField] private InventoryItem itemPrefab;
     [SerializeField] private RectTransform contentPanel;
     [SerializeField] private InventoryDesc itemDescription;
+    [SerializeField] private MouseFollower mouseFollower;
 
     List<InventoryItem> items = new List<InventoryItem>();
 
@@ -19,7 +20,9 @@ public class InventoryPage : MonoBehaviour
 
     private void Awake()
     {
-        itemDescription.ResetDescription();      
+        Hide();
+        itemDescription.ResetDescription();
+        mouseFollower.Toggle(false);
     }
     public void InitializeInventoryUI(int inventorysize)
     {
@@ -38,7 +41,7 @@ public class InventoryPage : MonoBehaviour
 
     private void HandleEndDrag(InventoryItem obj)
     {
-      
+        mouseFollower.Toggle(false);
     }
 
     private void HandleShowItemActions(InventoryItem obj)
@@ -48,7 +51,8 @@ public class InventoryPage : MonoBehaviour
 
     private void HandleBeginDrag(InventoryItem obj)
     {
-       
+        mouseFollower.Toggle(true);
+        mouseFollower.SetData(image, quantity);
     }
 
     private void HandleSwap(InventoryItem obj)
