@@ -1008,6 +1008,10 @@ PrefabInstance:
       propertyPath: mouseFollower
       value: 
       objectReference: {fileID: 114882741}
+    - target: {fileID: 4908461354602531439, guid: 9c0c6874b15a44241a91e5ac71ca909e, type: 3}
+      propertyPath: inventoryData
+      value: 
+      objectReference: {fileID: 11400000, guid: b2be5b7409d4b874d856021e6bd67a91, type: 2}
     - target: {fileID: 6919833670689487017, guid: 9c0c6874b15a44241a91e5ac71ca909e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

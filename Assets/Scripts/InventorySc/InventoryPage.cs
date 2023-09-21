@@ -107,10 +107,10 @@ public class InventoryPage : MonoBehaviour
         }
     }
 
-    private void ResetSelection()
+    public void ResetSelection()
     {
         itemDescription.ResetDescription();
-        
+        DeselectAllItems();
     }
 
     public void Hide()
@@ -123,5 +123,12 @@ public class InventoryPage : MonoBehaviour
     {
         mouseFollower.Toggle(false);
         currentlyDraggedItemIndex = -1;
+    }
+
+    internal void UpdateDescription(int itemIndex, Sprite itemImage, string name, string description)
+    {
+        itemDescription.SetDescription(itemImage, name, description);
+        DeselectAllItems();
+        items[itemIndex].Select();
     }
 }

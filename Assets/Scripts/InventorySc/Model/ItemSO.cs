@@ -9,8 +9,8 @@ public class ItemSO : ScriptableObject
 
     public int id => GetInstanceID();
 
-    [SerializeField] int MaxStackSize;
-    [SerializeField] string Name;
-    [field: SerializeField][field: TextArea] string description;
-    [SerializeField] Sprite ItemImage;
+    [SerializeField] public int MaxStackSize;
+    [SerializeField] public string Name;
+    [field: SerializeField][field: TextArea] public string description;
+    [SerializeField] public Sprite ItemImage;
 }
