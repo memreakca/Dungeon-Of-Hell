@@ -9,11 +9,27 @@ public class InventoryController : MonoBehaviour
 {
     [SerializeField] private InventoryPage InventoryUI;
     [SerializeField] private InventorySO inventoryData;
+
+    public List <InventoryItemSO> initialItems = new List<InventoryItemSO> ();
     
     private void Start()
     {
         PrepareUI();
-        //inventoryData.Initialize();
+        PrepareInventoryData();
+
+    }
+
+    private void PrepareInventoryData()
+    {
+        inventoryData.Initialize();
+        foreach (InventoryItemSO item in initialItems)
+        {
+            if (item.isEmpty)
+            {
+                continue;
+            }
+            inventoryData.AddItem(item);
+        }
     }
 
     private void PrepareUI()
@@ -32,12 +48,14 @@ public class InventoryController : MonoBehaviour
 
     private void HandleDragging(int itemIndex)
     {
-      
+        InventoryItemSO inventoryItem = inventoryData.GetItemAt(itemIndex);
+        if (inventoryItem.isEmpty) return;
+        InventoryUI.CreateDraggedItem(inventoryItem.item.ItemImage,inventoryItem.quantity);
     }
 
     private void HandleSwapItems(int itemIndex_1, int itemIndex_2)
     {
-       
+        inventoryData.SwapItems(itemIndex_1, itemIndex_2);
     }
 
     private void HandleDescriptionRequested(int itemIndex)

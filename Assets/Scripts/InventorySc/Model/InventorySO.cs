@@ -54,6 +54,24 @@ public class InventorySO : ScriptableObject
     {
         return inventoryItems[itemIndex];
     }
+
+    public void AddItem(InventoryItemSO item)
+    {
+        AddItem(item.item, item.quantity);
+    }
+
+    public void SwapItems(int itemIndex_1, int itemIndex_2)
+    {
+        InventoryItemSO item1 = inventoryItems[itemIndex_1];
+        inventoryItems[itemIndex_1] = inventoryItems[itemIndex_2];
+        inventoryItems[itemIndex_2] = item1;
+        InformAboutChange();
+    }
+
+    private void InformAboutChange()
+    {
+        
+    }
 }
 
     [Serializable]
