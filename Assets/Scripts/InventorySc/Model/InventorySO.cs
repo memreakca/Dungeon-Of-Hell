@@ -70,6 +70,7 @@ namespace Inventory.Model
             inventoryItems[itemIndex_1] = inventoryItems[itemIndex_2];
             inventoryItems[itemIndex_2] = item1;
             InformAboutChange();
+            
         }
 
         private void InformAboutChange()

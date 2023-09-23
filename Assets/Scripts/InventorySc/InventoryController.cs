@@ -70,6 +70,7 @@ namespace Inventory
         private void HandleSwapItems(int itemIndex_1, int itemIndex_2)
         {
             inventoryData.SwapItems(itemIndex_1, itemIndex_2);
+            InventoryUI.ResetCurrentItemIndex();
         }
 
         private void HandleDescriptionRequested(int itemIndex)

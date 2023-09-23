@@ -43,7 +43,7 @@ namespace Inventory.UI
                 uiitem.OnItemBeginDrag += HandleBeginDrag;
                 uiitem.OnItemDroppedOn += HandleSwap;
                 uiitem.OnItemEndDrag += HandleEndDrag;
-                uiitem.OnRightMouseBtnClick += HandleShowItemActions;
+                //uiitem.OnRightMouseBtnClick += HandleShowItemActions;
             }
         }
         public void UpdateData(int itemIndex, Sprite itemImage, int itemQuantity)
@@ -81,12 +81,15 @@ namespace Inventory.UI
 
         private void HandleSwap(InventoryItem InventoryItemUI)
         {
+            
             int index = items.IndexOf(InventoryItemUI);
             if (index == -1)
             {
+                currentlyDraggedItemIndex = -1 ;
                 return;
             }
-            OnSwapItems?.Invoke(currentlyDraggedItemIndex, index);
+       
+            OnSwapItems?.Invoke(currentlyDraggedItemIndex, index );
             HandleItemSelection(InventoryItemUI);
 
         }
@@ -128,7 +131,7 @@ namespace Inventory.UI
         private void ResetDraggedItem()
         {
             mouseFollower.Toggle(false);
-            currentlyDraggedItemIndex = -1;
+     
         }
 
         internal void UpdateDescription(int itemIndex, Sprite itemImage, string name, string description)
@@ -145,6 +148,11 @@ namespace Inventory.UI
                 item.ResetData();
                 item.Deselect();
             }
+        }
+
+        public void ResetCurrentItemIndex()
+        {
+            currentlyDraggedItemIndex = -1;
         }
     }
 }

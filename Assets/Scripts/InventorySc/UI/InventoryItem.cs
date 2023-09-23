@@ -57,7 +57,11 @@ namespace Inventory.UI
 
         public void OnEndDrag(PointerEventData eventData)
         {
-            OnItemEndDrag?.Invoke(this);
+            if (eventData.button != PointerEventData.InputButton.Right)
+            {
+                OnItemEndDrag?.Invoke(this);
+            }
+            
         }
 
         public void OnPointerClick(PointerEventData pointerData)
@@ -74,9 +78,14 @@ namespace Inventory.UI
 
         public void OnBeginDrag(PointerEventData eventData)
         {
+
             if (empty)
                 return;
-            OnItemBeginDrag?.Invoke(this);
+            if (eventData.button != PointerEventData.InputButton.Right)
+            {
+                OnItemBeginDrag?.Invoke(this);
+            }
+            
         }
 
         public void OnDrag(PointerEventData eventData)
