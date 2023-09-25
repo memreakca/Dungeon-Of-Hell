@@ -7,7 +7,7 @@ namespace Inventory.Model
     [CreateAssetMenu]
     public class ItemSO : ScriptableObject
     {
-        [SerializeField] private bool isStackable;
+        [SerializeField] public bool isStackable;
 
         public int id => GetInstanceID();
 
