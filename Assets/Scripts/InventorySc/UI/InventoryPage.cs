@@ -1,3 +1,4 @@
+using Inventory.Model;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ namespace Inventory.UI
 {
     public class InventoryPage : MonoBehaviour
     {
+        [SerializeField] private ItemSO itemmage;
         [SerializeField] private InventoryItem itemPrefab;
         [SerializeField] private RectTransform contentPanel;
         [SerializeField] private InventoryDesc itemDescription;
@@ -66,6 +68,7 @@ namespace Inventory.UI
             currentlyDraggedItemIndex = index;
             HandleItemSelection(InventoryItemUI);
             OnStartDragging?.Invoke(index);
+          
 
         }
 
@@ -77,6 +80,7 @@ namespace Inventory.UI
         private void HandleEndDrag(InventoryItem InventoryItemUI)
         {
             ResetDraggedItem();
+            
         }
 
         private void HandleSwap(InventoryItem InventoryItemUI)

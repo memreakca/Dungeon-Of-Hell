@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Inventory.Model
 {
@@ -10,7 +11,7 @@ namespace Inventory.Model
         [SerializeField] public bool isStackable;
 
         public int id => GetInstanceID();
-
+        
         [SerializeField] public int MaxStackSize;
         [SerializeField] public string Name;
         [field: SerializeField][field: TextArea] public string description;

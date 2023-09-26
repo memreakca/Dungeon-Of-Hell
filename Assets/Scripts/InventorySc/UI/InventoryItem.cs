@@ -14,6 +14,7 @@ namespace Inventory.UI
         [SerializeField] Image itemImage;
         [SerializeField] TMP_Text quantity;
         [SerializeField] public Image borderImage;
+        
 
         public event Action<InventoryItem> OnItemClicked, OnItemDroppedOn,
             OnItemBeginDrag, OnItemEndDrag, OnRightMouseBtnClick;
