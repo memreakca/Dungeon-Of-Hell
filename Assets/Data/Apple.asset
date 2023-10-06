@@ -9,11 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d12468855f285d42871e55a1803c22c, type: 3}
-  m_Name: Arrow
+  m_Script: {fileID: 11500000, guid: 13af0d7c9acf69e419ef5d907075ff8a, type: 3}
+  m_Name: Apple
   m_EditorClassIdentifier: 
   isStackable: 1
-  MaxStackSize: 55
-  Name: Arrow
-  description: deals damage
+  MaxStackSize: 99
+  Name: Apple
+  description: 'Restores Hp
+
+'
   ItemImage: {fileID: 21300000, guid: 36f02d91d15e7424087363b144cbb49b, type: 3}
+  modifiersData:
+  - statModifier: {fileID: 11400000, guid: 0530993d6c694ba468b1c1e22521d087, type: 2}
+    value: 2

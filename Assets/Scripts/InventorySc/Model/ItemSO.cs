@@ -5,8 +5,7 @@ using UnityEngine.UI;
 
 namespace Inventory.Model
 {
-    [CreateAssetMenu]
-    public class ItemSO : ScriptableObject
+    public abstract class ItemSO : ScriptableObject
     {
         [SerializeField] public bool isStackable;
 

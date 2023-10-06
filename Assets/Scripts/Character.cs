@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,7 @@ public class Character : MonoBehaviour
 {
     public static Character main;
 
+    
     [Header("Refs")]
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] public Transform[] weaponslot;
@@ -50,5 +52,10 @@ public class Character : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, antispawnrange);
+    }
+
+    public void AddHealth(int val)
+    {
+        HitPoints += val;
     }
 }

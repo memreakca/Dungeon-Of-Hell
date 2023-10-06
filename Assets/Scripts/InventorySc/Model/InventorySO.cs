@@ -14,6 +14,7 @@ namespace Inventory.Model
         [SerializeField] public int Size = 40;
 
         public event Action<Dictionary<int, InventoryItemSO>> OnInventoryUpdated;
+
         public void Initialize()
         {
             inventoryItems = new List<InventoryItemSO>();
@@ -29,6 +30,7 @@ namespace Inventory.Model
         {
             if( item.isStackable == false)
             {
+
                 for (int i = 0; i < inventoryItems.Count; i++)
                 {
                     while(quantity > 0 && IsInventoryFull() == false)
